@@ -12,9 +12,13 @@
 
 • 单元6: 将应用容器部署到 AKS6 分钟
 
-• 单元7: 总结2 分钟
+• 单元7: 摘要 2 分钟
 
-**单元1:简介**
+ &nbsp;
+ &nbsp;
+
+
+## **单元1:简介**
 
 -   2 分钟
 
@@ -32,8 +36,7 @@
 
 学完本模块后，你将能够：
 
--   **使用 Azure Migrate 应用容器化发现 Linux 计算机上运行的 Java Web
-    > 应用并对其进行容器化。**
+-   **使用 Azure Migrate 应用容器化发现 Linux 计算机上运行的 Java Web应用并对其进行容器化。**
 
 -   **构建 Java Web 应用的容器映像。**
 
@@ -41,10 +44,12 @@
 
 **先决条件**
 
--   有效的 [[Azure
-    > 订阅]{.underline}](https://azure.microsoft.com/free/services/kubernetes-service/?WT.mc_id=akspipeline_intro-learn-ludossan)
+-   有效的 [Azure订阅](https://azure.microsoft.com/free/services/kubernetes-service/?WT.mc_id=akspipeline_intro-learn-ludossan)
 
-**单元2:Azure Migrate 应用容器化概述**
+&nbsp;
+&nbsp;
+
+## **单元2: Azure Migrate 应用容器化概述**
 
 -   4 分钟
 
@@ -77,19 +82,20 @@ Azure Migrate 应用容器化可帮助你实现以下目的：
     > Dockerfile，并使用它来生成应用程序容器映像。
     > 应用程序容器映像会被推送到指定的 Azure 容器注册表。
 
--   **部署到 Azure Kubernetes
-    > 服务**：然后，该工具会生成将容器化应用程序部署到 Azure Kubernetes
+-   **部署到 Azure Kubernetes服务**：然后，该工具会生成将容器化应用程序部署到 Azure Kubernetes
     > 服务群集时所需的 Kubernetes 资源定义 YAML 文件。 可以自定义 YAML
     > 文件，并使用它们在 AKS 上部署应用程序。
 
 ![App Containerization process
-overview](./media/media/image1.png){width="5.768055555555556in"
-height="3.1770833333333335in"}
+overview](./media/image1.png)
 
 在此模块的后续部分中，你将设置一个示例双层 Java Web 应用，并使用 Azure
 Migrate 应用容器化对应用程序进行容器化并将其迁移到 AKS。
 
-**单元3: - 设置主机环境**
+&nbsp;
+&nbsp;
+
+## **单元3: 设置主机环境**
 
 -   7 分钟
 
@@ -101,7 +107,7 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
 **准备 Azure 帐户**
 
 如果没有 Azure
-订阅，请在开始之前创建一个[[免费帐户]{.underline}](https://azure.microsoft.com/pricing/free-trial/)。
+订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/pricing/free-trial/)。
 
 订阅设置完成后，你将需要一个拥有以下权限的 Azure 用户帐户：
 
@@ -115,8 +121,7 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
 1.  在 Azure 门户中，搜索"订阅"，然后在"服务"下选择"订阅" 。
 
 > ![Search box to search for the Azure
-> subscription.](./media/media/image2.png){width="5.768055555555556in"
-> height="2.323611111111111in"}
+> subscription.](./media/image2.png)
 
 2.  在"订阅"页上，选择要在其中创建 Azure Migrate 项目的订阅。
 
@@ -127,15 +132,13 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
 5.  在"添加角色分配"中，单击"添加" 。
 
 > ![Search for a user account to check access and assign a
-> role.](./media/media/image3.png){width="5.768055555555556in"
-> height="2.286111111111111in"}
+> role.](./media/image3.png)
 
 6.  在"添加角色分配"中，选择"所有者"角色，然后选择帐户（本例中为
     > azmigrateuser）。 然后单击"保存" 。
 
 > ![Opens the Add Role assignment page to assign a role to the
-> account.](./media/media/image4.png){width="5.75in"
-> height="6.527777777777778in"}
+> account.](./media/image4.png)
 
 7.  Azure 帐户还需要注册 Azure Active Directory 应用的权限。
 
@@ -146,8 +149,7 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
     > 用户是否可以注册应用程序（默认情况下设置为"是"） 。
 
 > ![Verify in User Settings that users can register Active Directory
-> apps.](./media/media/image5.png){width="5.768055555555556in"
-> height="3.967361111111111in"}
+> apps.](./media/image5.png)
 
 10. 如果"应用注册"设置设置为"否"，请请求租户/全局管理员分配所需的权限。
     > 或者，租户/全局管理员可将"应用程序开发人员"角色分配给帐户，以允许注册
@@ -155,12 +157,11 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
 
 **设置 Airsonic 应用程序**
 
-1.  若要部署研讨会环境，请首先导航到 [[Azure
-    > 门户]{.underline}](https://portal.azure.com/)。
+1.  若要部署研讨会环境，请首先导航到 [Azure门户](https://portal.azure.com/)。
 
 2.  启动 Azure Cloud Shell 并运行以下命令。
 
-> 复制
+> *Bash复制*
 >
 > git clone
 > https://github.com/MicrosoftDocs/mslearn-azuremigrate-appcontainerization-javatomcat.git
@@ -175,16 +176,13 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
 3.  部署完成后，资源组中将显示以下资源。
 
 > ![Two-tier Java web application deployed for
-> workshop](./media/media/image6.png){width="5.768055555555556in"
-> height="2.404166666666667in"}
+> workshop](./media/image6.png)
 
 4.  要浏览应用程序，请选择"TomcatServer"虚拟机资源，复制服务器的公共
     > IP，并将其粘贴到浏览器窗口中。 在服务 IP 后面追加:8080/airsonic。
 
 > ![Java web application to be containerized and
-> migrated](./media/media/image7.png){width="5.768055555555556in"
-> height="1.8777777777777778in"}
-
+> migrated](./media/image7.png)
 5.  你可以使用以下凭据登录到应用程序。
 
     -   用户名：admin
@@ -198,12 +196,12 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
     > 你将使用此计算机运行 Azure Migrate: 应用容器化工具来迁移
     > TomcatServer 上托管的 Java Web 应用。
 
-2.  登录后，请[[下载]{.underline}](https://go.microsoft.com/fwlink/?linkid=2134571) Windows
+2.  登录后，请[下载](https://go.microsoft.com/fwlink/?linkid=2134571) Windows
     > 计算机上的 Azure Migrate: 应用容器化安装程序。
 
 3.  在管理员模式下启动 PowerShell，并运行以下命令来安装该工具。
 
-> PowerShell复制
+> *PowerShell复制*
 >
 > cd Downloads
 >
@@ -213,9 +211,11 @@ Airsonic，其中应用程序前端在 Linux 服务器的 Apache Tomcat
     > 浏览器并浏览到 **https://toolclient:44369** 以启动该工具。
     > 如果遇到警告，请单击"高级"和"继续 toolclient"。
 
-# 单元4: - 发现 Java Web 应用
+&nbsp;
+&nbsp;
 
-已完成100 XP
+##  **单元4: 发现 Java Web 应用**
+
 
 -   5 分钟
 
@@ -229,8 +229,7 @@ Migrate：应用容器化工具来发现需要进行容器化和迁移的 Java W
 2.  若要指定目标 Azure 服务，请选择"Azure Kubernetes 服务上的容器"。
 
 > ![Default load-up for App Containerization
-> tool.](./media/media/image8.png){width="5.768055555555556in"
-> height="3.488888888888889in"}
+> tool.](./media/image8.png)
 
 3.  接受许可条款，并阅读第三方信息。
 
@@ -271,23 +270,19 @@ Java Web 应用。
 
     -   凭据：将"adminUser"指定为用户名，将"Password@123"指定为密码。
 
-```{=html}
-<!-- -->
-```
+
 1.  单击"验证"，验证是否可以从运行该工具的计算机访问应用程序服务器，以及凭据是否有效。
     > 验证成功后，"状态"列会将状态显示为"已映射"。
 
 > ![Screenshot for server IP and
-> credentials.](./media/media/image9.png){width="5.768055555555556in"
-> height="2.7055555555555557in"}
+> credentials.](./media/image9.png)
 
 2.  单击"继续"，在选定的应用程序服务器上启动应用程序发现。
 
 3.  成功完成应用程序发现后，可以选择要容器化的应用程序列表。
 
 > ![Screenshot for discovered Java web
-> application.](./media/media/image10.png){width="5.768055555555556in"
-> height="2.8986111111111112in"}
+> application.](./media/image10.png)
 
 4.  使用此复选框选择要进行容器化的 Airsonic 应用程序。
 
@@ -308,8 +303,7 @@ Java Web 应用。
 3.  选择要参数化的配置后，单击"应用"。
 
 > ![Screenshot for app configuration parameterization Java web
-> application.](./media/media/image11.png){width="5.768055555555556in"
-> height="2.7041666666666666in"}
+> application.](./media/image11.png)
 
 ### 外部化文件系统依赖项
 
@@ -328,12 +322,14 @@ Java Web 应用。
 4.  选择"永久性卷"作为存储选项，以将容器外的文件夹存储到永久性卷上。
 
 > ![Screenshot for externalizing app folders for Java web
-> application.](./media/media/image12.png){width="5.768055555555556in"
-> height="2.6118055555555557in"}
+> application.](./media/image12.png)
 
 5.  单击"保存"。
 
-**单元5: - 为 Java Web 应用构建容器映像**
+&nbsp;
+&nbsp;
+
+## **单元5: 为 Java Web 应用构建容器映像**
 
 -   5 分钟
 
@@ -351,8 +347,7 @@ Azure Migrate 应用容器化使用 Azure 容器注册表任务在 Azure
     > 选择"创建新注册表"选项以创建新的 ACR learnappcontainerizationacr。
 
 > ![Screenshot for app ACR
-> selection.](./media/media/image13.png){width="5.768055555555556in"
-> height="3.436111111111111in"}
+> selection.](./media/image13.png)
 
 2.  **配置 Application Insights**：你可以在不检测代码的情况下为 Java
     > 应用启用监视功能。 该工具将安装 Java
@@ -376,7 +371,11 @@ Azure Migrate 应用容器化使用 Azure 容器注册表任务在 Azure
 
 6.  完成生成后，单击"继续"以指定部署设置。
 
-**单元6: - 将应用容器部署到 AKS**
+&nbsp;
+&nbsp;
+
+
+## **单元6: 将应用容器部署到 AKS**
 
 -   6 分钟
 
@@ -458,8 +457,7 @@ Azure Migrate 应用容器化工具应使用的 Azure 文件共享。 该工具�
 
 4.  **应用程序配置**：对于参数化的应用程序配置，将以下值用于当前部署。
 
-    -   导航到 LearnAppContainerization 资源组 [[Azure
-        > 门户]{.underline}](https://portal.azure.com/)。
+    -   导航到 LearnAppContainerization 资源组 [Azure门户](https://portal.azure.com/)。
 
     -   复制 MySQL 服务器的名称。 MySQL 服务器的名称将采用以下格式
         > -"airsonic-mysql-server-0000000000"。
@@ -471,20 +469,17 @@ Azure Migrate 应用容器化工具应使用的 Azure 文件共享。 该工具�
 
         -   **密码**：将值指定为"SuperS3kretPasSw0rd"。
 
-        -   **URL：**若要创建要指定的 URL，请替换以下连接字符串中的
+        -   **URL**：若要创建要指定的 URL，请替换以下连接字符串中的
             > MySQL 服务器名称，并将其粘贴到应用容器化工具中。\
             > **jdbc:mysql://\${MYSQL_SERVER_NAME}.mysql.database.azure.com:3306/airsonic?useSSL=false&sessionVariables=sql_mode=ANSI_QUOTES**
 
-```{=html}
-<!-- -->
-```
+
 1.  单击"应用"以保存部署配置。
 
 2.  单击"继续"以部署应用程序。
 
 > ![Screenshot for deployment app
-> configuration.](./media/media/image14.png){width="5.768055555555556in"
-> height="5.13125in"}
+> configuration.](./media/image14.png)
 
 **部署应用**
 
@@ -513,7 +508,11 @@ Azure Migrate 应用容器化工具应使用的 Azure 文件共享。 该工具�
 
 你应该能够访问应用程序。
 
-**摘要**
+&nbsp;
+&nbsp;
+
+
+## **单元7: 摘要**
 
 -   2 分钟
 
@@ -540,16 +539,12 @@ Vault 存储和管理应用程序机密，甚至有助于将应用内容移动�
 有关使用 Azure Migrate 对应用程序进行容器化并将其迁移到 AKS
 的详细信息，请参阅以下文章：
 
--   [[对 ASP.NET 应用程序进行容器化并将其迁移到
-    > AKS]{.underline}](https://go.microsoft.com/fwlink/?linkid=2173710)
+-   [对 ASP.NET 应用程序进行容器化并将其迁移到AKS](https://go.microsoft.com/fwlink/?linkid=2173710)
 
--   [[对 Java Web 应用进行容器化并将其迁移到
-    > AKS]{.underline}](https://go.microsoft.com/fwlink/?linkid=2173511)
+-   [对 Java Web 应用进行容器化并将其迁移到AKS](https://go.microsoft.com/fwlink/?linkid=2173511)
 
--   [[对 ASP.NET 应用程序进行容器化并将其迁移到 Azure
-    > 应用服务]{.underline}](https://go.microsoft.com/fwlink/?linkid=2173711)
+-   [对 ASP.NET 应用程序进行容器化并将其迁移到 Azure 应用服务](https://go.microsoft.com/fwlink/?linkid=2173711)
 
--   [[对 Java Web 应用进行容器化并将其迁移到 Azure
-    > 应用服务]{.underline}](https://go.microsoft.com/fwlink/?linkid=2173512)
+-   [对 Java Web 应用进行容器化并将其迁移到 Azure 应用服务](https://go.microsoft.com/fwlink/?linkid=2173512)
 
 **恭喜您！实验"将 Java Web 应用迁移到AKS"已完成！**

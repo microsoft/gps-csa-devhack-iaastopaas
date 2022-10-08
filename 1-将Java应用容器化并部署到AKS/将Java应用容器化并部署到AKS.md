@@ -1,6 +1,7 @@
 # 将 Java 应用容器化并部署到 Azure
-
-**单元1: 简介**
+ &nbsp;
+ &nbsp;
+## **单元1: 简介**
 
 -   3 分钟
 
@@ -14,9 +15,8 @@
 
 在本模块中，你将首先容器化一个 Java 应用。
 为方便起见，我们选择了一个现有的 Java
-应用供你使用。 [[航空公司的航班预订系统]{.underline}](https://github.com/Azure-Samples/containerize-and-deploy-Java-app-to-Azure)来自开放的
-Internet 并在 [[MIT
-许可]{.underline}](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)下共享，是一个完全响应式的、基于
+应用供你使用。 [航空公司的航班预订系统](https://github.com/Azure-Samples/containerize-and-deploy-Java-app-to-Azure)来自开放的
+Internet 并在 [MIT许可](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)下共享，是一个完全响应式的、基于
 Web 的航班预订系统示例，它以一个示例航空公司为基础，通过使用 Java
 Servlets 和 Java Server Pages (JSP) 构建的模型视图控制器 (MVC)
 体系结构生成。
@@ -33,9 +33,9 @@ Servlets 和 Java Server Pages (JSP) 构建的模型视图控制器 (MVC)
 
 你将使用你自己的 Azure
 订阅（具有创建、更新和删除资源的访问权限）来部署本模块中的资源。
-如果没有 Azure 订阅，请在开始之前创建一个[免费帐户]{.underline}。
+如果没有 Azure 订阅，请在开始之前创建一个[免费帐户]。
 
-** 重要**
+**重要**
 
 为避免在 Azure 订阅中产生不必要的费用，请记得在完成此模块后取消预配
 Azure 资源。
@@ -63,7 +63,10 @@ Azure 资源。
 
 -   在本地安装有 Docker CLI、Git CLI 和 Azure CLI（2.12 或更高版本）。
 
-# 单元2:设置 Azure 环境
+ &nbsp;
+ &nbsp;
+
+## **单元2: 设置 Azure 环境**
 
 -   6 分钟
 
@@ -71,7 +74,7 @@ Azure 资源。
 
 ## 使用 Azure CLI，执行以下步骤
 
-** 备注**
+**备注**
 
 为了节省时间，你将指示 Azure 先预配资源，然后继续下一个单元。 创建 Azure
 Kubernetes 群集可能需要 10 分钟。
@@ -106,7 +109,7 @@ az account set \--subscription \"\<YOUR_SUBSCRIPTION_ID>\"
 
 为了简化将进一步执行的命令，请设置以下环境变量：
 
-** 备注**
+**备注**
 
 需要将 \<YOUR_AZURE_REGION> 替换为你选择的区域，例如：eastus
 
@@ -146,7 +149,7 @@ az group create \\
 
 \| jq
 
-** 备注**
+**备注**
 
 本模块使用 jq 工具，该工具默认安装在 [**Azure Cloud
 Shell**](https://shell.azure.com/) 上，用于显示 JSON
@@ -206,13 +209,16 @@ az aks create \\
 
 \| jq
 
-** 备注**
+**备注**
 
 创建 Azure Kubernetes 群集可能需要 10
 分钟，运行上述命令后，可以选择让它在 Azure CLI
 选项卡中继续，然后继续下一单元。
 
-**单元3:容器化 Java 应用**
+ &nbsp;
+ &nbsp;
+
+## **单元3:容器化 Java 应用**
 
 -   10 分钟
 
@@ -233,8 +239,7 @@ Docker 运行时用于生成、拉取、运行和推送容器映像。
 下图描述了这些用例，接着是每个用例/Docker 命令的说明。
 
 ![Screenshot showing Docker
-commands.](.//media/image1.png){width="5.768055555555556in"
-height="2.8243055555555556in"}
+commands.](.//media/image1.png)
 
   --------------------------------------------------------------------------------------------------------------------------------
   **Docker   **说明**
@@ -259,7 +264,7 @@ height="2.8243055555555556in"}
 首先，你要将航空公司的航班预订系统存储库和 cd 克隆到航空公司 Web
 应用程序项目文件夹中。
 
-** 备注**
+**备注**
 
 如果在 CLI 选项卡中已成功创建 Azure Kubernetes
 服务，请使用该项，否则，如果它仍在运行，请在要克隆航空公司的航班预订系统的位置打开一个新的选项卡和
@@ -291,7 +296,7 @@ Bash复制
 
 mvn clean install
 
-** 备注**
+**备注**
 
 mvn clean install 命令用于阐明不使用 Docker
 多阶段生成的操作难题，我们将在后面进行介绍。
@@ -358,8 +363,7 @@ Docker 容器运行时所需的依赖项。
 Web 应用程序层，所有这些层都是通过 Dockerfile 中的命令生成的。
 
 ![Screenshot showing the Docker
-layers.](.//media/image2.png){width="5.768055555555556in"
-height="4.257638888888889in"}
+layers.](.//media/image2.png)
 
 Docker
 还具有多阶段生成的概念，借助该功能，可以创建具有更好的缓存和更小的安全内存占用的更小容器映像，使
@@ -398,8 +402,7 @@ Docker 之外编译代码和生成项目。
 层来构造运行时所需的剩余层，本示例中是配置应用程序服务器和启动应用程序。
 
 ![Screenshot showing the Docker multi-stage
-build.](.//media/image3.png){width="5.768055555555556in"
-height="5.768055555555556in"}
+build.](.//media/image3.png)
 
 在项目的根目录
 (containerize-and-deploy-Java-app-to-Azure/Project/Airlines)
@@ -448,7 +451,7 @@ EXPOSE 8080
 
 CMD \[\"catalina.sh\", \"run\"\]
 
-** 备注**
+**备注**
 
 或者，你的项目根目录中的 Dockerfile_Solution 包含所需的内容。
 
@@ -482,8 +485,8 @@ CMD \[\"catalina.sh\", \"run\"\]
 如你所见，此 Docker 文件的包阶段包含五个指令。
 
   -------------------------------------------------------------------------------------------------------------------------------
-  **Docker   **说明**
-  命令**     
+  **Docker命令说明**
+      
   ---------- --------------------------------------------------------------------------------------------------------------------
   FROM       FROM tomcat 是此容器映像将基于其构建的基本层。 航空公司的航班预订系统容器映像将是基于 tomcat 映像生成的映像。 Docker
              运行时将尝试在本地查找 tomcat 映像，如果它没有此版本，它将从注册表中拉取一个。 如果你要检查此处引用的 tomcat
@@ -505,7 +508,7 @@ CMD \[\"catalina.sh\", \"run\"\]
              应用程序服务器。
   -------------------------------------------------------------------------------------------------------------------------------
 
-** 备注**
+**备注**
 
 如果 FROM tomcat 行上没有版本标记，将应用最新的版本。
 通常，你将需要利用版本标记（记住，将应用缓存，因此，如果层不断变化，会产生带宽、延迟、计算时间和/或未经测试的生成/层的副作用。）在本模块中，我们预先选择了特定的
@@ -513,9 +516,13 @@ Maven、Tomcat、Java JRE/JDK 标记，这些标记经过测试，可在运行�
 FlightBookingSystemSample-0.0.1-SNAPSHOT.war。
 
 有关 Dockerfile
-构造的详细信息，请访问 [[https://docs.docker.com/engine/reference/builder/]{.underline}](https://docs.docker.com/engine/reference/builder/)
+构造的详细信息，请访问 [https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
 
-**单元4: 为 Java 应用生成并运行容器映像**
+
+ &nbsp;
+ &nbsp;
+
+## **单元4: 为 Java 应用生成并运行容器映像**
 
 -   4 分钟
 
@@ -526,7 +533,7 @@ FlightBookingSystemSample-0.0.1-SNAPSHOT.war。
 
 你已成功构造 Dockerfile，现在可以指示 Docker 为你生成容器映像。
 
-** 备注**
+**备注**
 
 确保将 Docker 运行时配置为生成 Linux 容器。 这一点非常重要，因为使用的
 Dockerfile 会引用用于 Linux 体系结构的容器映像 (JDK/JRE)。
@@ -933,15 +940,18 @@ milliseconds
 应看到以下内容
 
 ![Screenshot showing the running
-app.](.//media/image4.png){width="5.768055555555556in"
-height="2.910416666666667in"}
+app.](.//media/image4.png)
 
 你可以选择使用 tomcat-users.xml 中的任何用户登录，例如
 someuser\@azure.com：密码
 
 若要停止容器，请在 CLI 中按住 Ctrl + C。
 
-**单元5: 向 Azure 容器注册表推送容器映像**
+
+ &nbsp;
+ &nbsp;
+
+## **单元5: 向 Azure 容器注册表推送容器映像**
 
 -   4 分钟
 
@@ -951,7 +961,7 @@ someuser\@azure.com：密码
 容器注册表可以在专用注册表中为所有类型的容器部署生成、存储和管理容器映像与项目。
 将 Azure 容器注册表与现有的容器开发和部署管道配合使用。
 
-** 备注**
+**备注**
 
 如果会话已经空闲，则在另一个时间点和/或从其他 CLI
 执行此步骤时，可能需要重新初始化环境变量，并使用以下 CLI
@@ -1041,7 +1051,11 @@ JSON复制
 容器映像现在驻留在 Azure 容器注册表中，并可供 Azure 服务（如 Azure
 Kubernetes 服务）部署。
 
-**单元6: 将容器映像部署到 Azure Kubernetes 服务**
+ &nbsp;
+ &nbsp;
+ 
+
+## **单元6: 将容器映像部署到 Azure Kubernetes 服务**
 
 -   9 分钟
 
@@ -1057,7 +1071,7 @@ Kubernetes 控制器会在收到指示时将当前状态更改为声明的状态
 如果没有此部署，你将需要手动创建、更新和删除 Pod，而不是让 Kubernetes
 来协调操作。
 
-** 备注**
+**备注**
 
 如果会话已经空闲，则在另一个时间点和/或从其他 CLI
 执行此步骤时，可能需要重新初始化环境变量，并使用以下 CLI
@@ -1092,7 +1106,7 @@ vi deployment.yml
 
 将以下内容添加到 deployment.yml 中，然后保存并退出：
 
-** 备注**
+**备注**
 
 你需要用先前设置的 AZ_CONTAINER_REGISTRY
 环境变量值进行更新，例如：javacontainerizationdemoacr
@@ -1176,7 +1190,7 @@ selector:
 
 app: flightbookingsystemsample
 
-** 备注**
+**备注**
 
 或者，你的项目的根目录中的 deployment_solution.yml
 包含所需的内容，你可能会发现，重命名/更新该文件的内容会更容易。
@@ -1476,24 +1490,23 @@ org.apache.catalina.startup.Catalina.start Server startup in 48195 ms
 flightbookingsystemsample 输出中的 EXTERNAL-IP 来访问 Azure Kubernetes
 服务中正在运行的应用了。
 
-** 备注**
+**备注**
 
 需要将下面的 IP 地址 20.81.13.151 替换为先前执行的命令中的 EXTERNAL-IP。
 
-打开浏览器并访问航班预订系统示例登陆页面，网址为 [[http://20.81.13.151:8080/FlightBookingSystemSample]{.underline}](http://20.81.13.151:8080/FlightBookingSystemSample)
+打开浏览器并访问航班预订系统示例登陆页面，网址为 [http://20.81.13.151:8080/FlightBookingSystemSample](http://20.81.13.151:8080/FlightBookingSystemSample)
 
 你将看到如下内容：
 
 ![Screenshot showing the running
-app](.//media/image5.png){width="5.768055555555556in"
-height="2.884027777777778in"}
+app](.//media/image5.png)
 
 可以选择使用 tomcat-users.xml 中的任何用户登录，例如
 someuser\@azure.com：密码
+ &nbsp;
+ &nbsp;
+## **单元7: 摘要**
 
-**单元7: 摘要**
-
-已完成100 XP
 
 -   2 分钟
 
@@ -1515,7 +1528,7 @@ someuser\@azure.com：密码
 
 **启用诊断记录**
 
-了解 Azure 如何提供[内置诊断以帮助进行调试]{.underline}。
+了解 Azure 如何提供[内置诊断以帮助进行调试]。
 
 **清理资源**
 
@@ -1529,16 +1542,14 @@ az group delete \--name \$AZ_RESOURCE_GROUP \--yes
 
 运行此命令可能需要一分钟时间。
 
-** 重要**
+**重要**
 
 请取消预配本模块中所使用的 Azure 资源，以避免产生不必要的费用。
 
 **其他资源**
 
-详细了解 [[Docker]{.underline}](https://docs.docker.com/reference/)。
+详细了解 [Docker](https://docs.docker.com/reference/)。
 
-详细了解 [[Azure
-容器注册表]{.underline}](https://azure.microsoft.com/services/container-registry/)。
+详细了解 [Azure容器注册表](https://azure.microsoft.com/services/container-registry/)。
 
-了解有关 [[Azure Kubernetes
-服务]{.underline}](https://azure.microsoft.com/services/kubernetes-service/)的详细信息。
+了解有关 [Azure Kubernetes服务](https://azure.microsoft.com/services/kubernetes-service/)的详细信息。
