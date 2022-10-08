@@ -84,7 +84,7 @@ Kubernetes 群集可能需要 10 分钟。
 
 登录：
 
-Bash复制
+*Bash复制*
 
 az login
 
@@ -94,14 +94,14 @@ Azure 订阅是用于在 Azure 中预配资源的逻辑容器。
 你需要找到计划在本模块中使用的订阅 ID (SubscriptionId)。 列出 Azure
 订阅：
 
-Bash复制
+*Bash复制*
 
 az account list \--output table
 
 确保你使用的是允许为本模块创建资源的 Azure 订阅，用你选择的订阅 ID
 (SubscriptionId) 进行替换：
 
-Bash复制
+*Bash复制*
 
 az account set \--subscription \"\<YOUR_SUBSCRIPTION_ID>\"
 
@@ -122,7 +122,7 @@ FQDN（完全限定的域名），例如：someuniquevaluejavacontainerregistry
 群集时为其生成唯一的
 FQDN（完全限定的域名），例如：someuniquevaluejavacontainerizationdemoaks
 
-Bash复制
+*Bash复制*
 
 AZ_RESOURCE_GROUP=javacontainerizationdemorg
 
@@ -139,7 +139,7 @@ AZ_KUBERNETES_CLUSTER_DNS_PREFIX=\<YOUR_UNIQUE_DNS_PREFIX_TO_ACCESS_YOUR_AKS_CLU
 Azure 资源组是位于 Azure 订阅中的 Azure 容器，用于存放 Azure
 解决方案的相关资源。 创建资源组：
 
-Bash复制
+*Bash复制*
 
 az group create \\
 
@@ -162,7 +162,7 @@ Shell**](https://shell.azure.com/) 上，用于显示 JSON
 使用 Azure 容器注册表，可以生成、存储和管理容器映像，这些映像最终会存储
 Java 应用的容器映像。 创建容器注册表：
 
-Bash复制
+*Bash复制*
 
 az acr create \\
 
@@ -176,7 +176,7 @@ az acr create \\
 
 将 Azure CLI 配置为使用此新创建的 Azure 容器注册表：
 
-Bash复制
+*Bash复制*
 
 az configure \\
 
@@ -184,7 +184,7 @@ az configure \\
 
 向新创建的 Azure 容器注册表进行身份验证：
 
-Bash复制
+*Bash复制*
 
 az acr login -n \$AZ_CONTAINER_REGISTRY
 
@@ -193,7 +193,7 @@ az acr login -n \$AZ_CONTAINER_REGISTRY
 你需要一个 Azure Kubernetes 群集，用于在其中部署 Java 应用（容器映像）。
 创建 AKS 群集：
 
-Bash复制
+*Bash复制*
 
 az aks create \\
 
@@ -278,21 +278,21 @@ cd。
 
 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 git clone
 https://github.com/Azure-Samples/containerize-and-deploy-Java-app-to-Azure.git
 
 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 cd containerize-and-deploy-Java-app-to-Azure/Project/Airlines
 
 （可选）如果已安装 Maven 和 JDK(8) 或更高版本，可以在 CLI
 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 mvn clean install
 
@@ -306,7 +306,7 @@ Maven 命令。
 Maven 应已成功生成航空公司的航班预订系统 Web 应用程序存档项目
 FlightBookingSystemSample-0.0.-SNAPSHOT.war，如下图所示：
 
-Bash复制
+*Bash复制*
 
 \[INFO\] Building war:
 /mnt/c/Users/chtrembl/dev/git/containerize-and-deploy-Java-app-to-Azure/Project/FlightBookingSystemSample/target/FlightBookingSystemSample-0.0.1-SNAPSHOT.war
@@ -408,13 +408,13 @@ build.](.//media/image3.png)
 (containerize-and-deploy-Java-app-to-Azure/Project/Airlines)
 中，创建一个名为 Dockerfile 的文件：
 
-Bash复制
+*Bash复制*
 
 vi Dockerfile
 
 将以下内容添加到 Dockerfile 中，然后保存并退出：
 
-Dockerfile复制
+*Dockerfile复制*
 
 \#
 
@@ -542,13 +542,13 @@ docker
 build 是用于构建容器映像的命令。 -t 参数将用于指定容器标签，. 是用于查找
 Dockerfile 的 Docker 位置。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 docker build -t flightbookingsystemsample .
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 docker build -t flightbookingsystemsample .
 
@@ -717,13 +717,13 @@ Docker 缓存派生）。
 Docker 还可以显示驻留的可用映像。 这有助于查看可运行的内容。 在 CLI
 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 docker image ls
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 docker image ls
 
@@ -743,13 +743,13 @@ HTTP（冒号前的第一个端口）流量转发到容器（冒号后的第二�
 最后，需要映像标记 flightbookingsystemsample 来指示 Docker
 运行哪个映像。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 docker run -p 8080:8080 flightbookingsystemsample
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 docker run -p 8080:8080 flightbookingsystemsample
 
@@ -992,27 +992,27 @@ flightbookingsystemsample 映像。
 
 登录 Azure 容器注册表：
 
-Bash复制
+*Bash复制*
 
 az acr login
 
 首先用 Azure 容器注册表标记前面生成的容器映像：
 
-Bash复制
+*Bash复制*
 
 docker tag flightbookingsystemsample
 \$AZ_CONTAINER_REGISTRY.azurecr.io/flightbookingsystemsample
 
 接下来，将容器映像推送到 Azure 容器注册表：
 
-Bash复制
+*Bash复制*
 
 docker push \$AZ_CONTAINER_REGISTRY.azurecr.io/flightbookingsystemsample
 
 现在可以查看新推送的映像的 Azure 容器注册表映像元数据了。 在 CLI
 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 az acr repository show -n \$AZ_CONTAINER_REGISTRY \--image
 flightbookingsystemsample:latest
@@ -1100,7 +1100,7 @@ az acr login -n \$AZ_CONTAINER_REGISTRY
 (Flight-Booking-System-JavaServlets_App/Project/Airlines)，创建一个名为
 deployment.yml 的文件。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 vi deployment.yml
 
@@ -1207,34 +1207,34 @@ app: flightbookingsystemsample
 你需要将 Azure CLI 配置为通过 kubectl 命令访问 Azure Kubernetes 群集。
 使用 az aks install-cli 命令在本地安装 kubectl。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 az aks install-cli
 
 使用 az aks get-credentials 命令将 kubectl 配置为连接到 Kubernetes
 群集。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 az aks get-credentials \--resource-group \$AZ_RESOURCE_GROUP \--name
 \$AZ_KUBERNETES_CLUSTER
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 Merged AZ_KUBERNETES_CLUSTER as current context in \~/.kube/config
 
 现在指示 Azure Kubernetes 服务将 deployment.yml 更改应用到群集。 在 CLI
 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 kubectl apply -f deployment.yml
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 deployment.apps/flightbookingsystemsample created
 
@@ -1242,13 +1242,13 @@ service/flightbookingsystemsample created
 
 现在可以使用 kubectl 来监视部署状态。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 kubectl get all
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 NAME READY STATUS RESTARTS AGE
 
@@ -1275,14 +1275,14 @@ replicaset.apps/flightbookingsystemsample-7564c58f55 0 0 0 13d
 
 此外，你还可以查看每个 Pod 中的应用日志。 在 CLI 中运行以下命令：
 
-Bash复制
+*Bash复制*
 
 kubectl logs
 pod/flightbookingsystemsample-\<POD_IDENTIFIER_FROM_YOUR_RUNNING_POD>
 
 你将看到如下内容：
 
-Bash复制
+*Bash复制*
 
 NOTE: Picked up JDK_JAVA_OPTIONS:
 \--add-opens=java.base/java.lang=ALL-UNNAMED
@@ -1536,7 +1536,7 @@ someuser\@azure.com：密码
 如果以后不需要这些资源，请从门户中删除资源组。 或在 Azure Cloud Shell
 中运行以下命令。
 
-Bash复制
+*Bash复制*
 
 az group delete \--name \$AZ_RESOURCE_GROUP \--yes
 
